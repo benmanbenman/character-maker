@@ -1,7 +1,22 @@
+/* 
+
+colour pallete
+
+0D0A0B black
+F3EFF5 white
+AD2831 red
+
+*/
+
+text {
+   color: #0d0a0d
+}
+
 html, body {
 	position: relative;
 	width: 100%;
 	height: 100%;
+   background: #f3eff5
 }
 
 body {
