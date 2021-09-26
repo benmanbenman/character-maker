@@ -4,4 +4,4 @@
 
 create d&d characters and export to PDFs
 
-Released under the [MIT](LICENSE) license.
+released under the [MIT](LICENSE) license.
