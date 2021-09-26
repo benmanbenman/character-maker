@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://github.com/PenPow"><img src="https://ss.penpow.dev/i/YJRBq5.png"></a>
+  <a href="https://github.com/bnejy/character-maker"><img src="https://ss.penpow.dev/i/YJRBq5.png"></a>
   <br>
   Character Maker
   <br>
