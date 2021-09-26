@@ -19,7 +19,7 @@
 </script>
 
 <select name="" bind:value on:change={handleClick}>
-   <option value="" disabled selected>Select</option>
+   <option value="placeholder" disabled selected>select</option>
    {#each arr as item}
       <option value={item}>{item}</option>
       <br>

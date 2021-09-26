@@ -1,6 +1,7 @@
 <script>
    import Tabs from './components/shared/Tabs.svelte'
    import Select from './components/Select.svelte'
+   import Abilities from './components/Abilities.svelte'
 
    let items = ['race', 'class', 'stats', 'details', 'equipment'];
    let activeItem;
@@ -12,14 +13,13 @@
       activeItem = localStorage.getItem('tab_active');
    }
 
-
    let character = {
       race: "",
       class: "",
       subclass: "",
-      stats: [],
+      stats: {},
       details: "",
-      equipment: []
+      equipment: {}
    };
 
    const tabChange = (e) => {
@@ -37,12 +37,13 @@
    <Tabs {items} {activeItem} on:tabChange={tabChange}/>
    {#if activeItem === 'race'}
       <p>choose race.</p>
-      <Select arr={["Dragonborn", "Dwarf", "Elf", "Gnome", "Half-Elf", "Halfling", "Human", "Tiefling"]} storage="race_active" prop="race" on:changed={changeCharacter}/>
+      <Select arr={["dragonborn", "dwarf", "elf", "gnome", "half-elf", "halfling", "human", "tiefling"]} storage="race_active" prop="race" on:changed={changeCharacter} />
    {:else if activeItem === 'class'}
       <p>choose class and subclass.</p>
-      <Select arr={["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"]} storage="class_active" prop="class" on:changed={changeCharacter}/>
+      <Select arr={["barbarian", "bard", "cleric", "druid", "fighter", "monk", "paladin", "ranger", "rogue", "sorcerer", "warlock", "wizard"]} storage="class_active" prop="class" on:changed={changeCharacter}/>
    {:else if activeItem === 'stats'}
       <p>choose stats.</p>
+      <Abilities on:changed={changeCharacter}/>
    {:else if activeItem === 'details'}
       <p>change name, appearance etc.</p>
    {:else if activeItem === 'equipment'}
