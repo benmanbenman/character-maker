@@ -1,1 +1,7 @@
-a simple single-page application which allows you to create your own d&d character and export to a pdf.
+<h1 align="center">
+  character maker
+</h1>
+
+create d&d characters and export to PDFs
+
+Released under the [MIT](LICENSE) license.
