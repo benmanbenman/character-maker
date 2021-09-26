@@ -947,7 +947,7 @@ var app = (function () {
     const { console: console_1 } = globals;
     const file = "src/App.svelte";
 
-    // (39:40) 
+    // (48:40) 
     function create_if_block_4(ctx) {
     	let p;
 
@@ -955,7 +955,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			p.textContent = "choose equipment and gold.";
-    			add_location(p, file, 39, 6, 1211);
+    			add_location(p, file, 48, 6, 1514);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -972,14 +972,14 @@ var app = (function () {
     		block,
     		id: create_if_block_4.name,
     		type: "if",
-    		source: "(39:40) ",
+    		source: "(48:40) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (37:38) 
+    // (46:38) 
     function create_if_block_3(ctx) {
     	let p;
 
@@ -987,7 +987,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			p.textContent = "change name, appearance etc.";
-    			add_location(p, file, 37, 6, 1128);
+    			add_location(p, file, 46, 6, 1431);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -1004,14 +1004,14 @@ var app = (function () {
     		block,
     		id: create_if_block_3.name,
     		type: "if",
-    		source: "(37:38) ",
+    		source: "(46:38) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (35:36) 
+    // (44:36) 
     function create_if_block_2(ctx) {
     	let p;
 
@@ -1019,7 +1019,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			p.textContent = "choose stats.";
-    			add_location(p, file, 35, 6, 1062);
+    			add_location(p, file, 44, 6, 1365);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -1036,14 +1036,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2.name,
     		type: "if",
-    		source: "(35:36) ",
+    		source: "(44:36) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (32:36) 
+    // (41:36) 
     function create_if_block_1(ctx) {
     	let p;
     	let t1;
@@ -1052,7 +1052,20 @@ var app = (function () {
 
     	select = new Select({
     			props: {
-    				arr: ["Barbarian", "Gamer"],
+    				arr: [
+    					"Barbarian",
+    					"Bard",
+    					"Cleric",
+    					"Druid",
+    					"Fighter",
+    					"Monk",
+    					"Paladin",
+    					"Ranger",
+    					"Rogue",
+    					"Sorcerer",
+    					"Warlock",
+    					"Wizard"
+    				],
     				storage: "class_active",
     				prop: "class"
     			},
@@ -1067,7 +1080,7 @@ var app = (function () {
     			p.textContent = "choose class and subclass.";
     			t1 = space();
     			create_component(select.$$.fragment);
-    			add_location(p, file, 32, 6, 875);
+    			add_location(p, file, 41, 6, 1078);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -1096,14 +1109,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(32:36) ",
+    		source: "(41:36) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (29:3) {#if activeItem === 'race'}
+    // (38:3) {#if activeItem === 'race'}
     function create_if_block(ctx) {
     	let p;
     	let t1;
@@ -1136,7 +1149,7 @@ var app = (function () {
     			p.textContent = "choose race.";
     			t1 = space();
     			create_component(select.$$.fragment);
-    			add_location(p, file, 29, 6, 642);
+    			add_location(p, file, 38, 6, 845);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -1165,7 +1178,7 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(29:3) {#if activeItem === 'race'}",
+    		source: "(38:3) {#if activeItem === 'race'}",
     		ctx
     	});
 
@@ -1220,7 +1233,7 @@ var app = (function () {
     			t = space();
     			if (if_block) if_block.c();
     			attr_dev(main, "class", "svelte-13avv6a");
-    			add_location(main, file, 26, 0, 541);
+    			add_location(main, file, 35, 0, 744);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1311,7 +1324,13 @@ var app = (function () {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('App', slots, []);
     	let items = ['race', 'class', 'stats', 'details', 'equipment'];
-    	let activeItem = 'race';
+    	let activeItem;
+
+    	if (localStorage.getItem('tab_active') == null) {
+    		activeItem = 'race';
+    	} else {
+    		activeItem = localStorage.getItem('tab_active');
+    	}
 
     	let character = {
     		race: "",
@@ -1324,6 +1343,7 @@ var app = (function () {
 
     	const tabChange = e => {
     		$$invalidate(0, activeItem = e.detail);
+    		localStorage.setItem('tab_active', activeItem);
     	};
 
     	const changeCharacter = e => {
