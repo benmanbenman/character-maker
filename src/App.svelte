@@ -3,7 +3,15 @@
    import Select from './components/Select.svelte'
 
    let items = ['race', 'class', 'stats', 'details', 'equipment'];
-   let activeItem = 'race';
+   let activeItem;
+
+   if (localStorage.getItem('tab_active') == null) {
+      activeItem = 'race';
+   }
+   else {
+      activeItem = localStorage.getItem('tab_active');
+   }
+
 
    let character = {
       race: "",
@@ -12,10 +20,11 @@
       stats: [],
       details: "",
       equipment: []
-   }
+   };
 
    const tabChange = (e) => {
       activeItem = e.detail;
+      localStorage.setItem('tab_active', activeItem);
    }
 
    const changeCharacter = (e) => {
@@ -31,7 +40,7 @@
       <Select arr={["Dragonborn", "Dwarf", "Elf", "Gnome", "Half-Elf", "Halfling", "Human", "Tiefling"]} storage="race_active" prop="race" on:changed={changeCharacter}/>
    {:else if activeItem === 'class'}
       <p>choose class and subclass.</p>
-      <Select arr={["Barbarian", "Gamer"]} storage="class_active" prop="class" on:changed={changeCharacter}/>
+      <Select arr={["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"]} storage="class_active" prop="class" on:changed={changeCharacter}/>
    {:else if activeItem === 'stats'}
       <p>choose stats.</p>
    {:else if activeItem === 'details'}
