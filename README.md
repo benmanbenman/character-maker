@@ -2,6 +2,6 @@
   character maker
 </h1>
 
-create d&d characters and export to PDFs
+create knave characters and export to PDFs
 
 released under the [MIT](LICENSE) license.
