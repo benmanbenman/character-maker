@@ -3,24 +3,25 @@
    import Select from './components/Select.svelte'
    import Abilities from './components/Abilities.svelte'
 
-   let items = ['race', 'class', 'stats', 'details', 'equipment'];
+   let items = ['stats', 'slots', 'health', 'traits'];
    let activeItem;
 
    if (localStorage.getItem('tab_active') == null) {
-      activeItem = 'race';
+      activeItem = 'stats';
    }
    else {
       activeItem = localStorage.getItem('tab_active');
    }
 
    let character = {
-      race: "",
-      class: "",
-      subclass: "",
       stats: {},
-      details: "",
-      equipment: {}
+      details: {},
+      slots: {}
    };
+
+   if (localStorage.getItem('character') != null) {
+      character = JSON.parse(localStorage.getItem('character'));
+   }
 
    const tabChange = (e) => {
       activeItem = e.detail;
@@ -29,25 +30,23 @@
 
    const changeCharacter = (e) => {
       character[e.detail.prop] = e.detail.val;
+      localStorage.setItem('character', JSON.stringify(character));
       console.log(character);
    }
+
 </script>
 
 <main>
    <Tabs {items} {activeItem} on:tabChange={tabChange}/>
-   {#if activeItem === 'race'}
-      <p>choose race.</p>
-      <Select arr={["dragonborn", "dwarf", "elf", "gnome", "half-elf", "halfling", "human", "tiefling"]} storage="race_active" prop="race" on:changed={changeCharacter} />
-   {:else if activeItem === 'class'}
-      <p>choose class and subclass.</p>
-      <Select arr={["barbarian", "bard", "cleric", "druid", "fighter", "monk", "paladin", "ranger", "rogue", "sorcerer", "warlock", "wizard"]} storage="class_active" prop="class" on:changed={changeCharacter}/>
-   {:else if activeItem === 'stats'}
-      <p>choose stats.</p>
+   {#if activeItem === 'stats'}
+      <p>roll stats.</p>
       <Abilities on:changed={changeCharacter}/>
-   {:else if activeItem === 'details'}
-      <p>change name, appearance etc.</p>
-   {:else if activeItem === 'equipment'}
-      <p>choose equipment and gold.</p>
+   {:else if activeItem === 'slots'}
+      <p>roll for equipment.</p>
+   {:else if activeItem === 'health'}
+      <p>roll health details.</p>
+   {:else if activeItem === 'traits'}
+      <p>invent or roll appearance, name etc.</p>
    {/if}
 </main>
 

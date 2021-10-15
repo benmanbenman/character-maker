@@ -1319,47 +1319,15 @@ var app = (function () {
     const { console: console_1 } = globals;
     const file = "src/App.svelte";
 
-    // (49:40) 
-    function create_if_block_4(ctx) {
-    	let p;
-
-    	const block = {
-    		c: function create() {
-    			p = element("p");
-    			p.textContent = "choose equipment and gold.";
-    			add_location(p, file, 49, 6, 1619);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, p, anchor);
-    		},
-    		p: noop,
-    		i: noop,
-    		o: noop,
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(p);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_if_block_4.name,
-    		type: "if",
-    		source: "(49:40) ",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (47:38) 
+    // (48:37) 
     function create_if_block_3(ctx) {
     	let p;
 
     	const block = {
     		c: function create() {
     			p = element("p");
-    			p.textContent = "change name, appearance etc.";
-    			add_location(p, file, 47, 6, 1536);
+    			p.textContent = "invent or roll appearance, name etc.";
+    			add_location(p, file, 48, 6, 1279);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -1376,7 +1344,39 @@ var app = (function () {
     		block,
     		id: create_if_block_3.name,
     		type: "if",
-    		source: "(47:38) ",
+    		source: "(48:37) ",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (46:37) 
+    function create_if_block_2(ctx) {
+    	let p;
+
+    	const block = {
+    		c: function create() {
+    			p = element("p");
+    			p.textContent = "roll health details.";
+    			add_location(p, file, 46, 6, 1207);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, p, anchor);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(p);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_2.name,
+    		type: "if",
+    		source: "(46:37) ",
     		ctx
     	});
 
@@ -1384,7 +1384,39 @@ var app = (function () {
     }
 
     // (44:36) 
-    function create_if_block_2(ctx) {
+    function create_if_block_1(ctx) {
+    	let p;
+
+    	const block = {
+    		c: function create() {
+    			p = element("p");
+    			p.textContent = "roll for equipment.";
+    			add_location(p, file, 44, 6, 1136);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, p, anchor);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(p);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1.name,
+    		type: "if",
+    		source: "(44:36) ",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (41:3) {#if activeItem === 'stats'}
+    function create_if_block(ctx) {
     	let p;
     	let t1;
     	let abilities;
@@ -1395,10 +1427,10 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			p = element("p");
-    			p.textContent = "choose stats.";
+    			p.textContent = "roll stats.";
     			t1 = space();
     			create_component(abilities.$$.fragment);
-    			add_location(p, file, 44, 6, 1422);
+    			add_location(p, file, 41, 6, 1026);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -1425,151 +1457,9 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_2.name,
-    		type: "if",
-    		source: "(44:36) ",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (41:36) 
-    function create_if_block_1(ctx) {
-    	let p;
-    	let t1;
-    	let select;
-    	let current;
-
-    	select = new Select({
-    			props: {
-    				arr: [
-    					"barbarian",
-    					"bard",
-    					"cleric",
-    					"druid",
-    					"fighter",
-    					"monk",
-    					"paladin",
-    					"ranger",
-    					"rogue",
-    					"sorcerer",
-    					"warlock",
-    					"wizard"
-    				],
-    				storage: "class_active",
-    				prop: "class"
-    			},
-    			$$inline: true
-    		});
-
-    	select.$on("changed", /*changeCharacter*/ ctx[3]);
-
-    	const block = {
-    		c: function create() {
-    			p = element("p");
-    			p.textContent = "choose class and subclass.";
-    			t1 = space();
-    			create_component(select.$$.fragment);
-    			add_location(p, file, 41, 6, 1135);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, p, anchor);
-    			insert_dev(target, t1, anchor);
-    			mount_component(select, target, anchor);
-    			current = true;
-    		},
-    		p: noop,
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(select.$$.fragment, local);
-    			current = true;
-    		},
-    		o: function outro(local) {
-    			transition_out(select.$$.fragment, local);
-    			current = false;
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(p);
-    			if (detaching) detach_dev(t1);
-    			destroy_component(select, detaching);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_if_block_1.name,
-    		type: "if",
-    		source: "(41:36) ",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (38:3) {#if activeItem === 'race'}
-    function create_if_block(ctx) {
-    	let p;
-    	let t1;
-    	let select;
-    	let current;
-
-    	select = new Select({
-    			props: {
-    				arr: [
-    					"dragonborn",
-    					"dwarf",
-    					"elf",
-    					"gnome",
-    					"half-elf",
-    					"halfling",
-    					"human",
-    					"tiefling"
-    				],
-    				storage: "race_active",
-    				prop: "race"
-    			},
-    			$$inline: true
-    		});
-
-    	select.$on("changed", /*changeCharacter*/ ctx[3]);
-
-    	const block = {
-    		c: function create() {
-    			p = element("p");
-    			p.textContent = "choose race.";
-    			t1 = space();
-    			create_component(select.$$.fragment);
-    			add_location(p, file, 38, 6, 901);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, p, anchor);
-    			insert_dev(target, t1, anchor);
-    			mount_component(select, target, anchor);
-    			current = true;
-    		},
-    		p: noop,
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(select.$$.fragment, local);
-    			current = true;
-    		},
-    		o: function outro(local) {
-    			transition_out(select.$$.fragment, local);
-    			current = false;
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(p);
-    			if (detaching) detach_dev(t1);
-    			destroy_component(select, detaching);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(38:3) {#if activeItem === 'race'}",
+    		source: "(41:3) {#if activeItem === 'stats'}",
     		ctx
     	});
 
@@ -1593,23 +1483,14 @@ var app = (function () {
     		});
 
     	tabs.$on("tabChange", /*tabChange*/ ctx[2]);
-
-    	const if_block_creators = [
-    		create_if_block,
-    		create_if_block_1,
-    		create_if_block_2,
-    		create_if_block_3,
-    		create_if_block_4
-    	];
-
+    	const if_block_creators = [create_if_block, create_if_block_1, create_if_block_2, create_if_block_3];
     	const if_blocks = [];
 
     	function select_block_type(ctx, dirty) {
-    		if (/*activeItem*/ ctx[0] === 'race') return 0;
-    		if (/*activeItem*/ ctx[0] === 'class') return 1;
-    		if (/*activeItem*/ ctx[0] === 'stats') return 2;
-    		if (/*activeItem*/ ctx[0] === 'details') return 3;
-    		if (/*activeItem*/ ctx[0] === 'equipment') return 4;
+    		if (/*activeItem*/ ctx[0] === 'stats') return 0;
+    		if (/*activeItem*/ ctx[0] === 'slots') return 1;
+    		if (/*activeItem*/ ctx[0] === 'health') return 2;
+    		if (/*activeItem*/ ctx[0] === 'traits') return 3;
     		return -1;
     	}
 
@@ -1624,7 +1505,7 @@ var app = (function () {
     			t = space();
     			if (if_block) if_block.c();
     			attr_dev(main, "class", "svelte-13avv6a");
-    			add_location(main, file, 35, 0, 800);
+    			add_location(main, file, 38, 0, 924);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1714,23 +1595,20 @@ var app = (function () {
     function instance($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('App', slots, []);
-    	let items = ['race', 'class', 'stats', 'details', 'equipment'];
+    	let items = ['stats', 'slots', 'health', 'traits'];
     	let activeItem;
 
     	if (localStorage.getItem('tab_active') == null) {
-    		activeItem = 'race';
+    		activeItem = 'stats';
     	} else {
     		activeItem = localStorage.getItem('tab_active');
     	}
 
-    	let character = {
-    		race: "",
-    		class: "",
-    		subclass: "",
-    		stats: {},
-    		details: "",
-    		equipment: {}
-    	};
+    	let character = { stats: {}, details: {}, slots: {} };
+
+    	if (localStorage.getItem('character') != null) {
+    		character = JSON.parse(localStorage.getItem('character'));
+    	}
 
     	const tabChange = e => {
     		$$invalidate(0, activeItem = e.detail);
@@ -1739,6 +1617,7 @@ var app = (function () {
 
     	const changeCharacter = e => {
     		character[e.detail.prop] = e.detail.val;
+    		localStorage.setItem('character', JSON.stringify(character));
     		console.log(character);
     	};
 
