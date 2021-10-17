@@ -1,60 +1,59 @@
 <script>
+   import { onMount } from 'svelte';
    import { createEventDispatcher } from 'svelte';
 
    const dispatch = createEventDispatcher();
 
-   let values = {'str': 8, 'dex': 8, 'wis': 8, 'int': 8, 'cha': 8};
-   const costs = {8: 0, 9: 1, 10: 2, 11: 3, 12: 4, 13: 5, 14: 7, 15: 9};
+   let values = {'str': 1, 'dex': 1, 'con': 1, 'wis': 1, 'int': 1, 'cha': 1};
 
    if (localStorage.getItem("abilities") != null) {
       values = JSON.parse(localStorage.getItem("abilities"));
-   }
+   };
+
+   console.log(localStorage.getItem("set"));
 
    const handleChange = (ability) => {
-      if (values[ability] >= 15) {
-         values[ability] = 15;
-      }
-
-      if (values[ability] < 8) {
-         values[ability] = 8;
-      }
-
-      let nums = Object.values(values);
-      let points = 28;
-
-      for (var i = 0; i < nums.length; i++) {
-         points = points - costs[nums[i]];
-      }
-
-      console.log(points)
-
-      if (points < 0) {
-         points = 0;
-      }
-
-      if (points == 0) {
-         if (values[ability] == 8) {
-            values[ability] = values[ability] +1;
-         }
-         else {
-            values[ability] = values[ability] -1;
-         }
-      }
-
       localStorage.setItem("abilities", JSON.stringify(values));
-      dispatch('changed', {val: values, prop: "stats"})
-   }
+      dispatch('changed', {val: values, prop: "stats"});
+      localStorage.setItem("set", true);
+   };
+   
+   const randomise = () => {
+      var keys = Object.keys(values) 
+      for (var i = 0; i < keys.length; i++) {
+         var lowest = 6;
+         for (var j = 0; j < 3; j++) {
+            var num = Math.floor(Math.random() * 7);
+            if (num == 0) {
+               num = 1
+            }
+            if (num < lowest) {
+               lowest = num;
+            };
+         };
+         values[keys[i]] = lowest;
+         handleChange(keys[i]);
+      }
+   };
 </script>
 
 {#each Object.keys(values) as ability}
-   <input type="number" id={ability} bind:value={values[ability]} on:change={() => handleChange(ability)} placeholder={ability}/>
+   <input type="number" id={ability} bind:value={values[ability]} placeholder={ability} readonly/>
 {/each}
 
 <br>
 
 {#each Object.keys(values) as ability}
-   <label for="">{ability}</label>
+   <label for="{ability}">{ability}</label>
 {/each}
+
+<br>
+
+{#if localStorage.getItem("set") == null}
+   <button on:click|once={randomise} id="roll">
+      roll
+   </button>
+{/if}
 
 <style>
    input {
@@ -64,10 +63,22 @@
       margin: 5px;
    }
 
+   /* center input text */
+
+   input[type='number']::-webkit-inner-spin-button, 
+   input[type='number']::-webkit-outer-spin-button { 
+      -webkit-appearance: none;
+      margin: 0;
+   }
+
    label {
       margin-top: 10px;
       margin-left: 30px;
       margin-right: 30px;
       display: inline-block;
+   }
+
+   button {
+      margin-top: 30px;
    }
 </style>

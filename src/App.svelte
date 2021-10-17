@@ -15,8 +15,9 @@
 
    let character = {
       stats: {},
-      details: {},
-      slots: {}
+      traits: {},
+      slots: {},
+      health: {max: 0, current: 0}
    };
 
    if (localStorage.getItem('character') != null) {
@@ -42,7 +43,8 @@
       <p>roll stats.</p>
       <Abilities on:changed={changeCharacter}/>
    {:else if activeItem === 'slots'}
-      <p>roll for equipment.</p>
+      <p>choose and roll for equipment.</p>
+      <Select arr={["",""]} />
    {:else if activeItem === 'health'}
       <p>roll health details.</p>
    {:else if activeItem === 'traits'}
